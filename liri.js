@@ -18,6 +18,7 @@ var userInput = process.argv[3];
 
 // Bands in Town function
 function concert(userInput) {
+    // Use axios to get data from Bands in Town API
     axios.get("https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp").then(
         function (response) {
             var date = moment(response.data[0].datetime).format('MM/DD/YYYY');
@@ -26,7 +27,9 @@ function concert(userInput) {
             console.log("Date: " + date);
             console.log("=================================================================================");
         }
-    ) .catch(function(error) {
+    )
+    // Is there is an error
+    .catch(function(error) {
         if (error.response) {
           console.log("---------------Data---------------");
           console.log(error.response.data);
@@ -44,13 +47,15 @@ function concert(userInput) {
 }; 
 // concert(userInput);
 
-
 // Spotify function
 function spotifySearch(userInput) {
+    // If the user inputs nothing, use the song, "The Sign"
     if (!userInput) {
         userInput = "The Sign";
         spotifySearch(userInput);
-    } else { 
+    } 
+    // Or search whatever track they input and limit the search to 3 results
+    else { 
         spotify.search({ 
             type: "track", 
             query: userInput,
@@ -60,12 +65,14 @@ function spotifySearch(userInput) {
             let songObject = response.tracks.items;
             console.log(response);
             for (i = 0; i < songObject.length; i ++) {
-            console.log("Artist: " + songObject.songs.artists[i].name);
-            console.log("Song name: " + songObject.songs[i].name);
-            console.log("Preview: " + songObject.songs[i].preview_url);
-            console.log("Album name: " + songObject.songs[i].album.name);
+            console.log("Artist: " + songObject[i].songs.artists.name);
+            console.log("Song name: " + songObject[i].songs.name);
+            console.log("Preview: " + songObject[i].songs.preview_url);
+            console.log("Album name: " + songObject[i].songs.album.name);
             console.log("=================================================================================")};
-    }) .catch(function(error) {
+    })
+    // If there is an error
+    .catch(function(error) {
         if (error.response) {
           console.log("---------------Data---------------");
           console.log(error.response.data);
@@ -84,11 +91,15 @@ function spotifySearch(userInput) {
 }}; 
 // spotifySearch(userInput);
 
+// OMDB function
 function movie(userInput) {
+    // If the user inputs nothing, display data for the movie, "Mr. Nobody"
     if (!userInput) {
         userInput = "mr nobody";
         movie(userInput);
-    } else {
+    } 
+    // Or search for whatever the user inputs using axios and the OMDB API
+    else {
         axios.get("http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy").then(
             function (response) {
                 console.log("Title: " + response.data.Title);
@@ -101,30 +112,81 @@ function movie(userInput) {
                 console.log("Actors: " + response.data.Actors);
                 console.log("=================================================================================");
             }
-        );
+        )
+        // If there is an error
+        .catch(function(error) {
+            if (error.response) {
+              console.log("---------------Data---------------");
+              console.log(error.response.data);
+              console.log("---------------Status---------------");
+              console.log(error.response.status);
+              console.log("---------------Status---------------");
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log("Error", error.message);
+            }
+            console.log(error.config);
+          });
     }
 };
 
-// function liri() {
-//     switch(userInput) {
-//         case "concert-this":
-//             concert()
-//             break;
-//         case "spotify-this-song":
-//             spotifySearch(userInput)
-//             break;
-//         case "movie-this":
-//             movie()
-//             break;
-//     }
-// } liri(); 
+// Do What It Says (fs) function
+function doWhatItSays() {
+    // Access the text content in random.txt using the fs package
+    fs.readFile("random.txt", "utf8", function (error, content) {
+        if (error) {
+            return console.log(error);
+        }
+        console.log(content);
 
+        // ??
+        var array = content.split(",");
+
+        // ??
+        var command = array[0];
+        let userInput = array[1];
+
+        function doSearch() {
+            if (command === "concert-this") {
+                concert(userInput);
+            } else if (command === "spotify-this-song") {
+                spotifySearch(userInput);
+            } else if (command === "movie-this") {
+                movie(userInput);
+            }
+        }
+        doSearch();
+    });
+};
+
+// Switch/cas function to make the program work
 function liri() {
-    if (command == "concert-this") {
-        concert(userInput);
-    } else if (command == "spotify-this-song") {
-        spotifySearch(userInput);
-    } else if (command == "movie-this") {
-        movie(userInput);
-    } else (console.log("Give a command"))
-} liri();
+    switch(command) {
+        case "concert-this":
+            concert(userInput)
+            break;
+        case "spotify-this-song":
+            spotifySearch(userInput)
+            break;
+        case "movie-this":
+            movie(userInput)
+            break;
+           case "do-what-it-says":
+               doWhatItSays()
+               break;
+    }
+} liri(); 
+
+// function liri() {
+//     if (command == "concert-this") {
+//         concert(userInput);
+//     } else if (command == "spotify-this-song") {
+//         spotifySearch(userInput);
+//     } else if (command == "movie-this") {
+//         movie(userInput);
+//     } else if (command == "do-what-it-says") {
+//         doWhatItSays();
+//     } else (console.log("Give a command"))
+// } liri();
