@@ -28,8 +28,6 @@ function concert(userInput) {
         }
     ) .catch(function(error) {
         if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
           console.log("---------------Data---------------");
           console.log(error.response.data);
           console.log("---------------Status---------------");
@@ -37,16 +35,14 @@ function concert(userInput) {
           console.log("---------------Status---------------");
           console.log(error.response.headers);
         } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an object that comes back with details pertaining to the error that occurred.
           console.log(error.request);
         } else {
-          // Something happened in setting up the request that triggered an Error
           console.log("Error", error.message);
         }
         console.log(error.config);
       });
-}; concert(userInput);
+}; 
+// concert(userInput);
 
 
 // Spotify function
@@ -71,8 +67,6 @@ function spotifySearch(userInput) {
             console.log("=================================================================================")};
     }) .catch(function(error) {
         if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
           console.log("---------------Data---------------");
           console.log(error.response.data);
           console.log("---------------Status---------------");
@@ -80,25 +74,57 @@ function spotifySearch(userInput) {
           console.log("---------------Status---------------");
           console.log(error.response.headers);
         } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an object that comes back with details pertaining to the error that occurred.
           console.log(error.request);
         } else {
-          // Something happened in setting up the request that triggered an Error
           console.log("Error", error.message);
         }
         console.log(error.config);
       });
     
-}}; spotifySearch(userInput);
+}}; 
+// spotifySearch(userInput);
+
+function movie(userInput) {
+    if (!userInput) {
+        userInput = "mr nobody";
+        movie(userInput);
+    } else {
+        axios.get("http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy").then(
+            function (response) {
+                console.log("Title: " + response.data.Title);
+                console.log("Year: " + response.data.Year);
+                console.log("IMDB rating: " + response.data.imdbRating);
+                console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
+                console.log("Country: " + response.data.Country);
+                console.log("Language: " + response.data.Language);
+                console.log("Plot: " + response.data.Plot);
+                console.log("Actors: " + response.data.Actors);
+                console.log("=================================================================================");
+            }
+        );
+    }
+};
+
+// function liri() {
+//     switch(userInput) {
+//         case "concert-this":
+//             concert()
+//             break;
+//         case "spotify-this-song":
+//             spotifySearch(userInput)
+//             break;
+//         case "movie-this":
+//             movie()
+//             break;
+//     }
+// } liri(); 
 
 function liri() {
-    switch(userInput) {
-        case "concert this":
-            concert()
-            break;
-        case "spotify-this-song":
-            spotifySearch(userInput)
-            break;
-    }
-} liri(); 
+    if (command == "concert-this") {
+        concert(userInput);
+    } else if (command == "spotify-this-song") {
+        spotifySearch(userInput);
+    } else if (command == "movie-this") {
+        movie(userInput);
+    } else (console.log("Give a command"))
+} liri();
