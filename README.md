@@ -5,9 +5,9 @@ Homework assignment for module #10 (U.T. Coding Bootcamp)
 I created this program to gain experience in writing a command line node app. 
 
 ## How to Use
-This app takes in certain parameters using the command line and gives you, the user, relevant data. 
+This app provides you, the user, with data pertaining to four different commands using the command line. 
 
-#### Type "node liri.js **concert-this** (whatever artist/band name you like)" in the command line, and you will receive: 
+#### 1. Type "node liri.js **concert-this** (whatever artist/band name you like)" in the command line, and you will receive: 
 * Name of the venue
 * Venue location
 * Date of the Event 
@@ -16,8 +16,8 @@ This app takes in certain parameters using the command line and gives you, the u
 
 ![Example of concert-this](images/concert-this.png)
 
-#### Type "node liri.js **spotify-this-song** (whatever song you like)" in the command line,
-and you will receive:
+
+#### 2. Type "node liri.js **spotify-this-song** (whatever song you like)" in the command line,and you will receive:
 * Artist(s)
 * The song's name
 * A preview link of the song from Spotify
@@ -27,8 +27,14 @@ and you will receive:
 
 ![Example of spotify-this-song](images/spotify-this-song.png)
 
-#### Type "node liri.js **movie-this** (whatever movie you like)" in the command line,
-and you will receive:
+#### If you don't provide a specific song, data for a default song ("The Sign") will be displayed.
+
+**EXAMPLE**
+
+![Example of spotify-this-song](images/spotify-this-song-default.png)
+
+
+#### 3. Type "node liri.js **movie-this** (whatever movie you like)" in the command line, and you will receive:
 * Title of the movie
 * Year the movie came out
 * IMDB Rating of the movie
@@ -42,13 +48,20 @@ and you will receive:
 
 ![Example of movie-this](images/movie-this.png)
 
-#### Type "node liri.js **do-what-it-says**" in the command line,
-and you will receive:
+#### If you don't provide a specific movie, data for a default movie ("Mr. Nobody") will be displayed.
+
+**EXAMPLE**
+
+![Example of movie-this](images/movie-this-default.png)
+
+
+#### 4.Type "node liri.js **do-what-it-says**" in the command line, and you will receive:
 * The contents and functionality of whatever exists in random.txt
 
 **EXAMPLE**
 
 ![Example of do-what-it-says](images/do-what-it-says.png)
+
 
 ## Technology Used
 * Node.js
