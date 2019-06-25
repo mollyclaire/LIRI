@@ -29,24 +29,16 @@ function concert(userInput) {
             console.log(chalk.blue(("=============================================")));
         }
     )
-    // Is there is an error
-    .catch(function(error) {
-        if (error.response) {
-          console.log("---------------Data---------------");
-          console.log(error.response.data);
-          console.log("---------------Status---------------");
-          console.log(error.response.status);
-          console.log("---------------Status---------------");
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
-}; 
-// concert(userInput);
+        // Is there is an error
+        .catch(
+            function (err) {
+                console.log("Error occurred: " + err);
+            }
+        )
+
+
+};
+
 
 // Spotify function
 function spotifySearch(userInput) {
@@ -54,43 +46,37 @@ function spotifySearch(userInput) {
     if (!userInput) {
         userInput = "The Sign by Ace of Base";
         spotifySearch(userInput);
-    } 
+    }
     // Or search whatever track they input and limit the search to 1 result
-    else { 
-        spotify.search({ 
-            type: "track", 
+    else {
+        spotify.search({
+            type: "track",
             query: userInput,
             limit: 1
-        }) 
-        .then(function(response) {
-            let songObject = response.tracks.items;
-            // console.log(response);
-            for (i = 0; i < songObject.length; i ++) {
-            console.log(chalk.bold("Artist: ") + songObject[i].artists[i].name);
-            console.log(chalk.bold("Song name: ") + songObject[i].name);
-            console.log(chalk.bold("Preview: ") + songObject[i].preview_url);
-            console.log(chalk.bold("Album name: ") + songObject[i].album.name);
-            console.log(chalk.blue(("=============================================")))};
-    })
-    // If there is an error
-    .catch(function(error) {
-        if (error.response) {
-          console.log("---------------Data---------------");
-          console.log(error.response.data);
-          console.log("---------------Status---------------");
-          console.log(error.response.status);
-          console.log("---------------Status---------------");
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
-    
-}}; 
-// spotifySearch(userInput);
+        })
+            .then(function (response) {
+                let songObject = response.tracks.items;
+                // console.log(response);
+                for (i = 0; i < songObject.length; i++) {
+                    console.log(chalk.bold("Artist: ") + songObject[i].artists[i].name);
+                    console.log(chalk.bold("Song name: ") + songObject[i].name);
+                    console.log(chalk.bold("Preview: ") + songObject[i].preview_url);
+                    console.log(chalk.bold("Album name: ") + songObject[i].album.name);
+                    console.log(chalk.blue(("=============================================")))
+                };
+            })
+            // If there is an error
+            .catch(
+                function (err) {
+                    console.log("Error occurred: " + err);
+                }
+            )
+
+
+
+    }
+};
+
 
 // OMDB function
 function movie(userInput) {
@@ -98,7 +84,7 @@ function movie(userInput) {
     if (!userInput) {
         userInput = "mr nobody";
         movie(userInput);
-    } 
+    }
     // Or search for whatever the user inputs using axios and the OMDB API
     else {
         axios.get("http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy").then(
@@ -114,22 +100,13 @@ function movie(userInput) {
                 console.log(chalk.blue(("=============================================")));
             }
         )
-        // If there is an error
-        .catch(function(error) {
-            if (error.response) {
-              console.log("---------------Data---------------");
-              console.log(error.response.data);
-              console.log("---------------Status---------------");
-              console.log(error.response.status);
-              console.log("---------------Status---------------");
-              console.log(error.response.headers);
-            } else if (error.request) {
-              console.log(error.request);
-            } else {
-              console.log("Error", error.message);
-            }
-            console.log(error.config);
-          });
+            // If there is an error
+            .catch(
+                function (err) {
+                    console.log("Error occurred: " + err);
+                }
+            )
+
     }
 };
 
@@ -149,6 +126,7 @@ function doWhatItSays() {
         var command = array[0];
         let userInput = array[1];
 
+        // Function that runs whatever command is first in the array in the random.txt file
         function doSearch() {
             if (command === "concert-this") {
                 concert(userInput);
@@ -164,7 +142,7 @@ function doWhatItSays() {
 
 // Switch/case function to make the program work
 function liri() {
-    switch(command) {
+    switch (command) {
         case "concert-this":
             concert(userInput)
             break;
@@ -174,31 +152,10 @@ function liri() {
         case "movie-this":
             movie(userInput)
             break;
-           case "do-what-it-says":
-               doWhatItSays()
-               break;
+        case "do-what-it-says":
+            doWhatItSays()
+            break;
     }
-} liri(); 
+} liri();
 
 
-
-// function liri() {
-//     if (command == "concert-this") {
-//         concert(userInput);
-//     } else if (command == "spotify-this-song") {
-//         spotifySearch(userInput);
-//     } else if (command == "movie-this") {
-//         movie(userInput);
-//     } else if (command == "do-what-it-says") {
-//         doWhatItSays();
-//     } else (console.log("Give a command"))
-// } liri();
-
-// function defaultSong() {
-//     spotify.search({ 
-//         type: "track", 
-//         query: "0hrBpAOgrt8RXigk83LLNE"
-//     }).then(function(response) {
-//         console.log(response);
-//     })
-// }
