@@ -7,25 +7,27 @@ I created this program to gain experience in writing a command line node app.
 ## How to Use
 This app takes in certain parameters using the command line and gives you, the user, relevant data. 
 
-Type "node liri.js **concert-this** (whatever artist/band name you like)" in the command line, and you will receive: 
+#### Type "node liri.js **concert-this** (whatever artist/band name you like)" in the command line, and you will receive: 
 * Name of the venue
 * Venue location
 * Date of the Event 
 
-EXAMPLE
+**EXAMPLE**
+
 ![Example of concert-this](images/concert-this.png)
 
-Type "node liri.js **spotify-this-song** (whatever song you like)" in the command line,
+#### Type "node liri.js **spotify-this-song** (whatever song you like)" in the command line,
 and you will receive:
 * Artist(s)
 * The song's name
 * A preview link of the song from Spotify
 * The album that the song is from
 
-EXAMPLE
+**EXAMPLE**
+
 ![Example of spotify-this-song](images/spotify-this-song.png)
 
-Type "node liri.js **movie-this** (whatever movie you like)" in the command line,
+#### Type "node liri.js **movie-this** (whatever movie you like)" in the command line,
 and you will receive:
 * Title of the movie
 * Year the movie came out
@@ -36,14 +38,16 @@ and you will receive:
 * Plot of the movie
 * Actors in the movie
 
-EXAMPLE
+**EXAMPLE**
+
 ![Example of movie-this](images/movie-this.png)
 
-Type "node liri.js **do-what-it-says**" in the command line,
+#### Type "node liri.js **do-what-it-says**" in the command line,
 and you will receive:
 * The contents and functionality of whatever exists in random.txt
 
-EXAMPLE
+**EXAMPLE**
+
 ![Example of do-what-it-says](images/do-what-it-says.png)
 
 ## Technology Used
