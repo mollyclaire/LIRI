@@ -4,7 +4,7 @@ Homework assignment for module #10 (U.T. Coding Bootcamp)
 ## Motivation
 I created this program to gain experience in writing a command line node app. 
 
-### How to Use
+## How to Use
 This app takes in certain parameters using the command line and gives you, the user, relevant data. 
 
 Type "node liri.js **concert-this** (whatever artist/band name you like)" in the command line, and you will receive: 
@@ -12,7 +12,8 @@ Type "node liri.js **concert-this** (whatever artist/band name you like)" in the
 * Venue location
 * Date of the Event 
 
-![Example of concert-this](images/concert-this)
+EXAMPLE
+![Example of concert-this](images/concert-this.png)
 
 Type "node liri.js **spotify-this-song** (whatever song you like)" in the command line,
 and you will receive:
@@ -21,7 +22,8 @@ and you will receive:
 * A preview link of the song from Spotify
 * The album that the song is from
 
-![Example of spotify-this-song](images/spotify-this-song)
+EXAMPLE
+![Example of spotify-this-song](images/spotify-this-song.png)
 
 Type "node liri.js **movie-this** (whatever movie you like)" in the command line,
 and you will receive:
@@ -34,12 +36,14 @@ and you will receive:
 * Plot of the movie
 * Actors in the movie
 
-![Example of movie-this](images/movie-this)
+EXAMPLE
+![Example of movie-this](images/movie-this.png)
 
 Type "node liri.js **do-what-it-says**" in the command line,
 and you will receive:
 * The contents and functionality of whatever exists in random.txt
 
+EXAMPLE
 ![Example of do-what-it-says](images/do-what-it-says.png)
 
 ## Technology Used
@@ -53,5 +57,6 @@ After this, I created functions for each command (movie-this, concert-this, etc.
 
 Once I had all four functions, I then created a switch/case statement in order to make the program work.
 
+### Portfolio
 **If you'd like to see more of my work, check out my portfolio at https://mollyclaire.github.io/Responsive-Portfolio/**
 
